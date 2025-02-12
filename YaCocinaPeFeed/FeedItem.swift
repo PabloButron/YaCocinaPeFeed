@@ -28,4 +28,4 @@ struct FeedItem {
     let strIngredient13: String
     let strIngredient14: String
     let strIngredient15: String
-    }
+}
