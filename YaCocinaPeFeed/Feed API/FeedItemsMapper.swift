@@ -9,10 +9,10 @@ import Foundation
 
 
 class FeedItemsMapper {
-
+    
     struct Root: Decodable {
         let meals: [Item]
-
+        
         struct Item: Decodable {
             let idMeal: String
             let strMeal: String
@@ -34,7 +34,7 @@ class FeedItemsMapper {
             let strIngredient13: String
             let strIngredient14: String
             let strIngredient15: String
-
+            
             var item: FeedItem {
                 return FeedItem(
                     idMeal: idMeal,
@@ -63,13 +63,13 @@ class FeedItemsMapper {
     
     static func map(_ data: Data, response: HTTPURLResponse) -> RemoteFeedLoader.Result {
         guard response.statusCode == 200 else {
-            return .failure(.invalidData)
+            return .failure(RemoteFeedLoader.Error.invalidData)
         }
         do {
             let root = try JSONDecoder().decode(Root.self, from: data)
             return .success(root.meals.map({ $0.item }))
         } catch  {
-            return .failure(.invalidData)
+            return .failure(RemoteFeedLoader.Error.invalidData)
         }
     }
 }
