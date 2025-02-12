@@ -66,10 +66,61 @@ final class RemoteFeedLoaderTests: XCTestCase {
     func test_load_deliversEmptyListOnEmptyJSONList() {
             let (sut, client) = makeSUT()
             expect(sut, toCompleteWith: .success([]), when: {
-                let emptyJSON = Data("{\"items\": []}".utf8)
+                let emptyJSON = Data("{\"meals\": []}".utf8)
                 client.complete(withStatusCode: 200, data: emptyJSON)
             })
         }
+    
+    func test_load_deliversItemsOnValidJSONResponse() {
+        let (sut, client) = makeSUT()
+        let item1 = makeItem(idMeal: "123",
+                             strMeal: "A title of meal",
+                             strArea: "a country",
+                             strDescription: "A description",
+                             imageURL: URL(string: "https://any-meat-url.com")!,
+                             strIngredient1: "Ingredient1",
+                             strIngredient2: "Ingredient2",
+                             strIngredient3: "Ingredient3",
+                             strIngredient4: "Ingredient4",
+                             strIngredient5: "Ingredient5",
+                             strIngredient6: "Ingredient6",
+                             strIngredient7: "Ingredient7",
+                             strIngredient8: "Ingredient8",
+                             strIngredient9: "Ingredient9",
+                             strIngredient10: "Ingredient10",
+                             strIngredient11: "Ingredient11",
+                             strIngredient12: "Ingredient12",
+                             strIngredient13: "Ingredient13",
+                             strIngredient14: "Ingredient14",
+                             strIngredient15: "Ingredient15")
+        
+        let item2 = makeItem(idMeal: "1234",
+                             strMeal: "Another title of meal",
+                             strArea: "Another country",
+                             strDescription: "Another description",
+                             imageURL: URL(string: "https://another-meat-url.com")!,
+                             strIngredient1: "Another Ingredient1",
+                             strIngredient2: "Another Ingredient2",
+                             strIngredient3: "Another Ingredient3",
+                             strIngredient4: "Another Ingredient4",
+                             strIngredient5: "Another Ingredient5",
+                             strIngredient6: "Another Ingredient6",
+                             strIngredient7: "Another Ingredient7",
+                             strIngredient8: "Another Ingredient8",
+                             strIngredient9: "Another Ingredient9",
+                             strIngredient10: "Another Ingredient10",
+                             strIngredient11: "Another Ingredient11",
+                             strIngredient12: "Another Ingredient12",
+                             strIngredient13: "Another Ingredient13",
+                             strIngredient14: "Another Ingredient14",
+                             strIngredient15: "Another Ingredient15")
+        
+        
+        expect(sut, toCompleteWith: .success([item1.model, item2.model]), when: {
+            let json = makeJSON([item1.json, item2.json])
+            client.complete(withStatusCode: 200, data: json)
+        })
+    }
     
     //MARK: Helpers
     
@@ -79,6 +130,82 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         return (sut, client)
     }
+    
+    private func makeItem(idMeal: String,
+                          strMeal: String,
+                          strArea: String,
+                          strDescription: String,
+                          imageURL: URL,
+                          strIngredient1: String,
+                          strIngredient2: String,
+                          strIngredient3: String,
+                          strIngredient4: String,
+                          strIngredient5: String,
+                          strIngredient6: String,
+                          strIngredient7: String,
+                          strIngredient8: String,
+                          strIngredient9: String,
+                          strIngredient10: String,
+                          strIngredient11: String,
+                          strIngredient12: String,
+                          strIngredient13: String,
+                          strIngredient14: String,
+                          strIngredient15: String) -> (model: FeedItem, json: [String: Any]){
+        
+        let item = FeedItem(idMeal: idMeal,
+                            strMeal: strMeal,
+                            strArea: strArea,
+                            strDescription: strDescription,
+                            imageURL: imageURL,
+                            strIngredient1: strIngredient1,
+                            strIngredient2: strIngredient2,
+                            strIngredient3: strIngredient3,
+                            strIngredient4: strIngredient4,
+                            strIngredient5: strIngredient5,
+                            strIngredient6: strIngredient6,
+                            strIngredient7: strIngredient7,
+                            strIngredient8: strIngredient8,
+                            strIngredient9: strIngredient9,
+                            strIngredient10: strIngredient10,
+                            strIngredient11: strIngredient11,
+                            strIngredient12: strIngredient12,
+                            strIngredient13: strIngredient13,
+                            strIngredient14: strIngredient14,
+                            strIngredient15: strIngredient15)
+        
+        
+        let json = [
+            "idMeal": idMeal,
+            "strMeal": strMeal,
+            "strArea": strArea,
+            "strInstructions":strDescription,
+            "strMealThumb": imageURL.absoluteString,
+            "strIngredient1":strIngredient1,
+            "strIngredient2": strIngredient2,
+            "strIngredient3": strIngredient3,
+            "strIngredient4": strIngredient4,
+            "strIngredient5": strIngredient5,
+            "strIngredient6": strIngredient6,
+            "strIngredient7": strIngredient7,
+            "strIngredient8": strIngredient8,
+            "strIngredient9": strIngredient9,
+            "strIngredient10": strIngredient10,
+            "strIngredient11": strIngredient11,
+            "strIngredient12": strIngredient12,
+            "strIngredient13": strIngredient13,
+            "strIngredient14": strIngredient14,
+            "strIngredient15": strIngredient15
+        ]
+        
+                return (item, json)
+        
+    }
+    
+    private func makeJSON (_ items: [[String: Any]]) -> Data {
+            let json = ["meals": items]
+            
+            return try! JSONSerialization.data(withJSONObject: json)
+        }
     
     private func expect (_ sut: RemoteFeedLoader, toCompleteWith result: RemoteFeedLoader.Result, when action: () -> Void) {
         
@@ -114,4 +241,6 @@ final class RemoteFeedLoaderTests: XCTestCase {
             messages[index].completion(.success(data, response))
         }
     }
+    
+    
 }
