@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "466A4004-B87D-45B7-91F2-F290D950D53D",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:YaCocinaPeFeed.xcodeproj",
+        "identifier" : "15B4412F2D5D50CA002114E6",
+        "name" : "YaCocinaPeFeedAPIEndToEndTests"
+      }
+    }
+  ],
+  "version" : 1
+}
