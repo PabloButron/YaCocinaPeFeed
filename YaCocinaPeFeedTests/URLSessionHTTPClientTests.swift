@@ -64,8 +64,13 @@ final class URLSessionHTTPClientTests: XCTestCase {
        XCTAssertEqual(receivedError?.code, requestError.code)
     }
     
-    func test_getFromURL_failsOnInvalidCaseAllNilValues () {
+    func test_getFromURL_failsOnAllInvalidCasesRepresentation () {
+        let nonHTTPURLResponse = URLResponse(url: anyURL(), mimeType: nil, expectedContentLength: 0, textEncodingName: nil)
+        
+        
         XCTAssertNotNil(resultErrorFor(data: nil, response: nil, error: nil))
+        XCTAssertNotNil(resultErrorFor(data: nil, response: nonHTTPURLResponse, error: nil))
+
      }
     
     
