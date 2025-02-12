@@ -26,9 +26,7 @@ final class YaCocinaPeFeedAPIEndToEndTests: XCTestCase {
         switch receivedResult {
         case .success(let items):
             XCTAssertEqual(items.count, 1, "expected 1 item in the test accound feed")
-            items.enumerated().forEach { index, item in
-                XCTAssertEqual(item, expectedItem(at: index))
-            }
+            XCTAssertEqual(items[0], expectedItem(at: 0))
             
         case .failure(let error):
             XCTFail("expected success got \(error) instead")
