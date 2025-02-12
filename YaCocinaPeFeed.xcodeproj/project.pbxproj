@@ -45,7 +45,7 @@
 		158C580A2D5D57370069D506 /* Exceptions for "YaCocinaPeFeedAPIEndToEndTests" folder in "YaCocinaPeFeedAPIEndToEndTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				YaCocinaPeFeedAPIEndToEndTests.xctestplan,
+				CI.xctestplan,
 			);
 			target = 15B4412F2D5D50CA002114E6 /* YaCocinaPeFeedAPIEndToEndTests */;
 		};

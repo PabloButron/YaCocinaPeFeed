@@ -6,6 +6,22 @@
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES"
       buildArchitectures = "Automatic">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "15F213E92D5CDFFE006ADB94"
+               BuildableName = "YaCocinaPeFeed.framework"
+               BlueprintName = "YaCocinaPeFeed"
+               ReferencedContainer = "container:YaCocinaPeFeed.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -14,23 +30,9 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:YaCocinaPeFeedAPIEndToEndTests/YaCocinaPeFeedAPIEndToEndTests.xctestplan"
-            default = "YES">
+            reference = "container:YaCocinaPeFeedAPIEndToEndTests/CI.xctestplan">
          </TestPlanReference>
       </TestPlans>
-      <Testables>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "15B4412F2D5D50CA002114E6"
-               BuildableName = "YaCocinaPeFeedAPIEndToEndTests.xctest"
-               BlueprintName = "YaCocinaPeFeedAPIEndToEndTests"
-               ReferencedContainer = "container:YaCocinaPeFeed.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-      </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
@@ -49,6 +51,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "15F213E92D5CDFFE006ADB94"
+            BuildableName = "YaCocinaPeFeed.framework"
+            BlueprintName = "YaCocinaPeFeed"
+            ReferencedContainer = "container:YaCocinaPeFeed.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
