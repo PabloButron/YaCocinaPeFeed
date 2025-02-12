@@ -30,7 +30,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:YaCocinaPeFeed.xctestplan"
+            reference = "container:YaCocinaPeFeedTests/YaCocinaPeFeed.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

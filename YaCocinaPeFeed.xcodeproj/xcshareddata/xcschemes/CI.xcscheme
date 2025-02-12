@@ -30,7 +30,8 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:YaCocinaPeFeedAPIEndToEndTests/CI.xctestplan">
+            reference = "container:YaCocinaPeFeedAPIEndToEndTests/CI.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
    </TestAction>
