@@ -29,13 +29,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		15B441292D5D26F6002114E6 /* YaCocinaPeFeed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = YaCocinaPeFeed.xctestplan; sourceTree = "<group>"; };
 		15B441302D5D50CA002114E6 /* YaCocinaPeFeedAPIEndToEndTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCocinaPeFeedAPIEndToEndTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F213EA2D5CDFFE006ADB94 /* YaCocinaPeFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YaCocinaPeFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F213F22D5CDFFE006ADB94 /* YaCocinaPeFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCocinaPeFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		158C58062D5D56F80069D506 /* Exceptions for "YaCocinaPeFeedTests" folder in "YaCocinaPeFeedTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				YaCocinaPeFeed.xctestplan,
+			);
+			target = 15F213F12D5CDFFE006ADB94 /* YaCocinaPeFeedTests */;
+		};
 		15F213FA2D5CDFFE006ADB94 /* Exceptions for "YaCocinaPeFeed" folder in "YaCocinaPeFeed" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
@@ -61,6 +67,9 @@
 		};
 		15F213F62D5CDFFE006ADB94 /* YaCocinaPeFeedTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				158C58062D5D56F80069D506 /* Exceptions for "YaCocinaPeFeedTests" folder in "YaCocinaPeFeedTests" target */,
+			);
 			path = YaCocinaPeFeedTests;
 			sourceTree = "<group>";
 		};
@@ -96,7 +105,6 @@
 		15F213E02D5CDFFE006ADB94 = {
 			isa = PBXGroup;
 			children = (
-				15B441292D5D26F6002114E6 /* YaCocinaPeFeed.xctestplan */,
 				15F213EC2D5CDFFE006ADB94 /* YaCocinaPeFeed */,
 				15F213F62D5CDFFE006ADB94 /* YaCocinaPeFeedTests */,
 				15B441312D5D50CA002114E6 /* YaCocinaPeFeedAPIEndToEndTests */,
