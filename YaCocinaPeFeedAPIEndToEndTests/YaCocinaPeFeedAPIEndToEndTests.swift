@@ -28,7 +28,7 @@ final class YaCocinaPeFeedAPIEndToEndTests: XCTestCase {
     
     private func getFeedResult () -> LoadFeedResult? {
         let serverURL = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")!
-        let client = URLSessionHTTPClient()
+        let client = URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
         let loader = RemoteFeedLoader(url: serverURL, client: client)
         
         trackForMemoryLeaks(from: client)
