@@ -1,0 +1,34 @@
+{
+  "configurations" : [
+    {
+      "id" : "585BC095-5290-49CD-BE32-1A3AF2423408",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:YaCocinaPeFeed.xcodeproj",
+          "identifier" : "15F213E92D5CDFFE006ADB94",
+          "name" : "YaCocinaPeFeed"
+        }
+      ]
+    },
+    "testExecutionOrdering" : "random"
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:YaCocinaPeFeed.xcodeproj",
+        "identifier" : "15F213F12D5CDFFE006ADB94",
+        "name" : "YaCocinaPeFeedTests"
+      }
+    }
+  ],
+  "version" : 1
+}

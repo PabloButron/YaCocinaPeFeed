@@ -21,6 +21,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		15B441292D5D26F6002114E6 /* YaCocinaPeFeed.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = YaCocinaPeFeed.xctestplan; sourceTree = "<group>"; };
 		15F213EA2D5CDFFE006ADB94 /* YaCocinaPeFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = YaCocinaPeFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		15F213F22D5CDFFE006ADB94 /* YaCocinaPeFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCocinaPeFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -73,6 +74,7 @@
 		15F213E02D5CDFFE006ADB94 = {
 			isa = PBXGroup;
 			children = (
+				15B441292D5D26F6002114E6 /* YaCocinaPeFeed.xctestplan */,
 				15F213EC2D5CDFFE006ADB94 /* YaCocinaPeFeed */,
 				15F213F62D5CDFFE006ADB94 /* YaCocinaPeFeedTests */,
 				15F213EB2D5CDFFE006ADB94 /* Products */,
