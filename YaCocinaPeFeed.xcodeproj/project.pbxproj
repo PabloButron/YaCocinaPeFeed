@@ -49,6 +49,13 @@
 			);
 			target = 15B4412F2D5D50CA002114E6 /* YaCocinaPeFeedAPIEndToEndTests */;
 		};
+		159044112D5D5A8A001F42C7 /* Exceptions for "YaCocinaPeFeedTests" folder in "YaCocinaPeFeedAPIEndToEndTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Helpers/XCTestCase+TrackForMemoryLeaks.swift",
+			);
+			target = 15B4412F2D5D50CA002114E6 /* YaCocinaPeFeedAPIEndToEndTests */;
+		};
 		15F213FA2D5CDFFE006ADB94 /* Exceptions for "YaCocinaPeFeed" folder in "YaCocinaPeFeed" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			publicHeaders = (
@@ -79,6 +86,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				158C58062D5D56F80069D506 /* Exceptions for "YaCocinaPeFeedTests" folder in "YaCocinaPeFeedTests" target */,
+				159044112D5D5A8A001F42C7 /* Exceptions for "YaCocinaPeFeedTests" folder in "YaCocinaPeFeedAPIEndToEndTests" target */,
 			);
 			path = YaCocinaPeFeedTests;
 			sourceTree = "<group>";

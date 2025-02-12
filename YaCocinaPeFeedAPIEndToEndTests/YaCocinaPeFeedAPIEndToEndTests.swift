@@ -11,19 +11,8 @@ import YaCocinaPeFeed
 final class YaCocinaPeFeedAPIEndToEndTests: XCTestCase {
     
     func test_endToEndTestServerGETFeedResult_matchesFixedTestAccountData (){
-        let serverURL = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")!
-        let client = URLSessionHTTPClient()
-        let loader = RemoteFeedLoader(url: serverURL, client: client)
-        var receivedResult: LoadFeedResult?
         
-        let exp = expectation(description: "Wait for completion")
-        loader.load { result in
-            receivedResult = result
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 10)
-        
-        switch receivedResult {
+        switch getFeedResult () {
         case .success(let items):
             XCTAssertEqual(items.count, 1, "expected 1 item in the test accound feed")
             XCTAssertEqual(items[0], expectedItem(at: 0))
@@ -36,6 +25,25 @@ final class YaCocinaPeFeedAPIEndToEndTests: XCTestCase {
         }
     }
     //MARK: Helpers
+    
+    private func getFeedResult () -> LoadFeedResult? {
+        let serverURL = URL(string: "https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")!
+        let client = URLSessionHTTPClient()
+        let loader = RemoteFeedLoader(url: serverURL, client: client)
+        
+        trackForMemoryLeaks(from: client)
+        trackForMemoryLeaks(from: loader)
+        var receivedResult: LoadFeedResult?
+        
+        let exp = expectation(description: "Wait for completion")
+        loader.load { result in
+            receivedResult = result
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 10)
+        return receivedResult
+    }
+    
     
     private func expectedItem(at index: Int) -> FeedItem {
         return FeedItem(idMeal: "52771",
@@ -59,5 +67,7 @@ final class YaCocinaPeFeedAPIEndToEndTests: XCTestCase {
                         strIngredient14: "",
                         strIngredient15: "")
     }
+    
+    
     
 }
