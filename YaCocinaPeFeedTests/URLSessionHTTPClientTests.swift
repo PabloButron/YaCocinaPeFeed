@@ -8,7 +8,7 @@
 import XCTest
 import YaCocinaPeFeed
 
-class URLSessionHTTPClient {
+class URLSessionHTTPClient: HTTPClient {
     let session: URLSession
     
     init(session: URLSession = .shared) {
@@ -99,51 +99,49 @@ final class URLSessionHTTPClientTests: XCTestCase {
         
     }
     
-    
-    
     //MARK: Helpers
     
-    private func makeSUT () -> URLSessionHTTPClient {
+    private func makeSUT () -> HTTPClient {
         let sut = URLSessionHTTPClient ()
         trackForMemoryLeaks(from: sut)
         return sut
     }
     
     private func resultSuccesFor (data: Data?, response: URLResponse?, error: Error?) -> (data: Data, response: HTTPURLResponse)? {
-        URLProtocolStub.stub(data: data, response: response, error: error)
-        var receivedValues: (data: Data, response: HTTPURLResponse)?
-        
-        let exp = expectation(description: "Wait for request completion")
-       makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case .success(let data, let response):
-                receivedValues = (data, response)
-            default:
-                XCTFail("Expected failure, but got \(result) instead")
-            }
-            exp.fulfill()
+        let result = resultFor(data: data, response: response, error: error)
+        switch result {
+        case .success(let data, let response):
+            return (data, response)
+        default:
+            XCTFail(" expected failure, but got \(result) instead")
+            return nil
         }
-        wait(for: [exp], timeout: 1.0)
-        return receivedValues
     }
     
     private func resultErrorFor (data: Data?, response: URLResponse?, error: Error?) -> Error? {
+        let result = resultFor(data: data, response: response, error: error)
+        switch result {
+        case .failure (let error):
+            return error
+        default:
+            XCTFail("Expected failure, but got \(result) instead")
+            return nil
+        }
+    }
+    
+    private func resultFor (data: Data?, response: URLResponse?, error: Error?) -> HTTPClientResult {
         URLProtocolStub.stub(data: data, response: response, error: error)
         
         let exp = expectation(description: "Wait for request completion")
-        var receivedError: Error?
-       makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case .failure (let error):
-                receivedError = error
-            default:
-                XCTFail(" expected failure, but got \(result) instead")
-            }
+        var receivedResult: HTTPClientResult!
+        makeSUT().get(from: anyURL()) { result in
+            receivedResult = result
             exp.fulfill()
         }
         wait(for: [exp], timeout: 1.0)
-        return receivedError
+        return receivedResult
     }
+    
     
     private func anyURL () -> URL {
         return URL (string: "https://a-url.com")!
