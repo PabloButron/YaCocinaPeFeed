@@ -8,7 +8,6 @@
 import XCTest
 import YaCocinaPeFeed
 
-
 class URLSessionHTTPClient {
     let session: URLSession
     
@@ -79,45 +78,28 @@ final class URLSessionHTTPClientTests: XCTestCase {
         XCTAssertNotNil(resultErrorFor(data: anyData(), response: nonHTTPURLResponse(), error: nil))
     }
     
-    func test_getFromURL_succeedsOnHTTPURLResponseWithEmtyData () {
+    func test_getFromURL_succeedsWithEmtyDataOnHTTPURLResponseWithNilData() {
         let response = anyHTTPURLResponse()
-        URLProtocolStub.stub(data: nil, response: response, error: nil)
+        let emptyData = Data()
+        let receivedResult = resultSuccesFor(data: nil, response: response, error: nil)
         
-        let exp = expectation(description: "Wait for request completion")
-        makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case .success(let receivedData, let receivedReponse):
-                let emptyData = Data()
-                XCTAssertEqual(receivedData, emptyData)
-                XCTAssertEqual(receivedReponse.statusCode, response.statusCode)
-                XCTAssertEqual(receivedReponse.url, response.url)
-            default:
-                XCTFail("Expected success, but got \(result) instead")
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(receivedResult?.data, emptyData)
+        XCTAssertEqual(receivedResult?.response.statusCode, response.statusCode)
+        XCTAssertEqual(receivedResult?.response.url, response.url)
     }
     
     func test_getFromURL_succeedsOnHTTPURLResponseWithData () {
         let data = anyData()
         let response = anyHTTPURLResponse()
-        URLProtocolStub.stub(data: data, response: response, error: nil)
+        let receivedResult = resultSuccesFor(data: data, response: response, error: nil)
         
-        let exp = expectation(description: "Wait for request completion")
-        makeSUT().get(from: anyURL()) { result in
-            switch result {
-            case .success(let receivedData, let receivedReponse):
-                XCTAssertEqual(receivedData, data)
-                XCTAssertEqual(receivedReponse.statusCode, response.statusCode)
-                XCTAssertEqual(receivedReponse.url, response.url)
-            default:
-                XCTFail("Expected success, but got \(result) instead")
-            }
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        XCTAssertEqual(receivedResult?.data, data)
+        XCTAssertEqual(receivedResult?.response.statusCode, response.statusCode)
+        XCTAssertEqual(receivedResult?.response.url, response.url)
+        
     }
+    
+    
     
     //MARK: Helpers
     
@@ -125,6 +107,24 @@ final class URLSessionHTTPClientTests: XCTestCase {
         let sut = URLSessionHTTPClient ()
         trackForMemoryLeaks(from: sut)
         return sut
+    }
+    
+    private func resultSuccesFor (data: Data?, response: URLResponse?, error: Error?) -> (data: Data, response: HTTPURLResponse)? {
+        URLProtocolStub.stub(data: data, response: response, error: error)
+        var receivedValues: (data: Data, response: HTTPURLResponse)?
+        
+        let exp = expectation(description: "Wait for request completion")
+       makeSUT().get(from: anyURL()) { result in
+            switch result {
+            case .success(let data, let response):
+                receivedValues = (data, response)
+            default:
+                XCTFail("Expected failure, but got \(result) instead")
+            }
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
+        return receivedValues
     }
     
     private func resultErrorFor (data: Data?, response: URLResponse?, error: Error?) -> Error? {
