@@ -55,6 +55,14 @@ final class RemoteFeedLoaderTests: XCTestCase {
         }
     }
     
+    func test_load_deliversErrorOnInvalidJSONResponse() {
+           let (sut, client) = makeSUT()
+           expect(sut, toCompleteWith: .invalidData, when: {
+               let invalidJSON = Data("invalid data".utf8)
+               client.complete(withStatusCode: 200, data: invalidJSON)
+           })
+       }
+    
     //MARK: Helpers
     
     private func makeSUT (url: URL = URL(string: "https://any-url.com")!) -> (sut: RemoteFeedLoader, client: HTTPClientSpy) {
