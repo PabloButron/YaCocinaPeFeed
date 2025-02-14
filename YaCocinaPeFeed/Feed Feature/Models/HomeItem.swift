@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct HomeItem: Identifiable {
+public struct HomeItem: Identifiable, Equatable {
     public let idMeal: String
     public let strMeal: String
     public let strMealThumb: URL
