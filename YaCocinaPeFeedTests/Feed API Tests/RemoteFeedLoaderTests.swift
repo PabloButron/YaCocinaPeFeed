@@ -24,6 +24,36 @@ final class RemoteFeedLoaderTests: XCTestCase {
         
         XCTAssertEqual(client.requestedURLs, [url])
     }
+    
+    func testIngredientsPropertyFiltersOutEmptyIngredients() {
+           let feedItem = FeedItem(
+               idMeal: "1",
+               strMeal: "Test Meal",
+               strArea: "Test Area",
+               strDescription: "A test description",
+               imageURL: URL(string: "https://example.com/image.jpg")!,
+               strIngredient1: "Chicken",
+               strIngredient2: "",
+               strIngredient3: "Salt",
+               strIngredient4: "Pepper",
+               strIngredient5: "",
+               strIngredient6: "",
+               strIngredient7: "",
+               strIngredient8: "",
+               strIngredient9: "",
+               strIngredient10: "",
+               strIngredient11: "",
+               strIngredient12: "",
+               strIngredient13: "",
+               strIngredient14: "",
+               strIngredient15: ""
+           )
+           
+           let ingredients = feedItem.ingredients
+           
+           XCTAssertEqual(ingredients, ["Chicken", "Salt", "Pepper"], "The ingredients property should filter out empty strings and return only non-empty ingredients.")
+       }
+    
     func test_load_doesRequestDataFromURLTwice () {
         let url = URL(string: "https://a-url.com")!
         let (sut, client) = makeSUT (url: url)
