@@ -72,6 +72,23 @@ struct HomeView: View {
                     }
                     .padding()
                     
+                } else {
+                    List(viewModel.meals) { meal in
+                        NavigationLink(destination: DetailView(mealId: meal.idMeal)) {
+                            HStack {
+                                AsyncImage(url: meal.strMealThumb) { image in
+                                    image.resizable().scaledToFill()
+                                } placeholder: {
+                                    ProgressView()
+                                }
+                                .frame(width: 50, height: 50)
+                                .clipShape(RoundedRectangle(cornerRadius: 10))
+                                
+                                Text(meal.strMeal)
+                                    .font(.headline)
+                            }
+                        }
+                    }
                 }
             }
             .toolbar {
