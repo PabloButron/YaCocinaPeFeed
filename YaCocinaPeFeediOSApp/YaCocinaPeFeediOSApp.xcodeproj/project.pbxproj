@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		15CBBA432D5FA087002F172D /* YaCocinaPeFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBBA422D5FA087002F172D /* YaCocinaPeFeed.framework */; };
+		15CBBA442D5FA087002F172D /* YaCocinaPeFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 15CBBA422D5FA087002F172D /* YaCocinaPeFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		159934432D5F9DBF008241A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -23,10 +28,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		15CBBA452D5FA087002F172D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				15CBBA442D5FA087002F172D /* YaCocinaPeFeed.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		159934322D5F9DBE008241A5 /* YaCocinaPeFeediOSApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YaCocinaPeFeediOSApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		159934422D5F9DBF008241A5 /* YaCocinaPeFeediOSAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCocinaPeFeediOSAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1599344C2D5F9DBF008241A5 /* YaCocinaPeFeediOSAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YaCocinaPeFeediOSAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		15CBBA422D5FA087002F172D /* YaCocinaPeFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = YaCocinaPeFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -52,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15CBBA432D5FA087002F172D /* YaCocinaPeFeed.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +99,7 @@
 				159934342D5F9DBE008241A5 /* YaCocinaPeFeediOSApp */,
 				159934452D5F9DBF008241A5 /* YaCocinaPeFeediOSAppTests */,
 				1599344F2D5F9DBF008241A5 /* YaCocinaPeFeediOSAppUITests */,
+				15CBBA412D5FA087002F172D /* Frameworks */,
 				159934332D5F9DBE008241A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +114,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		15CBBA412D5FA087002F172D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				15CBBA422D5FA087002F172D /* YaCocinaPeFeed.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +132,7 @@
 				1599342E2D5F9DBE008241A5 /* Sources */,
 				1599342F2D5F9DBE008241A5 /* Frameworks */,
 				159934302D5F9DBE008241A5 /* Resources */,
+				15CBBA452D5FA087002F172D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
