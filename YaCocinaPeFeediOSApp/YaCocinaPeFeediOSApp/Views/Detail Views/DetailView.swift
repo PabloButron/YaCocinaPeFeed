@@ -30,7 +30,13 @@ struct DetailView: View {
                     .font(.largeTitle)
                     .bold()
                 
- 
+                NavigationLink(destination: MapView(regionName: meal.strArea)) {
+                    Text("Display recipe country")
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
                 
                 Picker("Select", selection: $selectedTab) {
                     ForEach(Tab.allCases, id: \.self) { tab in
@@ -65,6 +71,11 @@ struct DetailView: View {
         }
     }
 }
+
+#Preview {
+    DetailView(mealId: "52771")
+}
+
 
 #Preview {
     DetailView(mealId: "52771")
