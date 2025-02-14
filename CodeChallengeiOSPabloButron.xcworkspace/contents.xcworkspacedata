@@ -5,6 +5,6 @@
       location = "group:YaCocinaPeFeediOSApp/YaCocinaPeFeediOSApp.xcodeproj">
    </FileRef>
    <FileRef
-      location = "container:MacOS Framework/YaCocinaPeFeed.xcodeproj">
+      location = "container:YaCocinaPeFeed/YaCocinaPeFeed.xcodeproj">
    </FileRef>
 </Workspace>
