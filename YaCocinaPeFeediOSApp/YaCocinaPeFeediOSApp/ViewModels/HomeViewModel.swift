@@ -20,7 +20,9 @@ class HomeViewModel: ObservableObject {
     @Published var isNotFound: Bool = false
 
 
-    
+    func loadMeals() async {
+        await fetchMeals(from: "https://www.themealdb.com/api/json/v1/1/filter.php?c=Seafood")
+    }
     
     func searchMeals() async {
         guard !searchQuery.isEmpty else { return }

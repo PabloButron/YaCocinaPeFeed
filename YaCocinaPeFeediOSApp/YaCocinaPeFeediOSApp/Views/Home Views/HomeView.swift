@@ -8,10 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @State private var isSearchVisible = false
     @StateObject private var viewModel = HomeViewModel()
-
-    
+    @State private var isSearchVisible = false
     
     var body: some View {
         NavigationView {
@@ -34,6 +32,47 @@ struct HomeView: View {
                         }
                     }
                 }
+                
+                if isSearchVisible && viewModel.isNotFound {
+                    VStack(spacing: 32) {
+                        Spacer()
+                        
+                        VStack(spacing: 16) {
+                            Text("Nothing Found")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.secondary)
+                            
+                            Image(systemName: "fork.knife")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 80, height: 80)
+                                .foregroundColor(.gray)
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            Task {
+                                await viewModel.loadMeals()
+                                isSearchVisible = false
+                            }
+                        } label: {
+                            Text("Back")
+                                .font(.headline)
+                                .padding()
+                                .frame(maxWidth: .infinity)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                        }
+                        .padding(.horizontal, 24)
+                        
+                        Spacer()
+                    }
+                    .padding()
+                    
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
@@ -51,6 +90,9 @@ struct HomeView: View {
                     }
                     .padding(.horizontal)
                 }
+            }
+            .task {
+                await viewModel.loadMeals()
             }
         }
     }
